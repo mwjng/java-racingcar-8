@@ -6,9 +6,13 @@ import racingcar.dto.CarDto;
 public class OutputView {
     private static final String INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
     private static final String INPUT_TRY_COUNT_MESSAGE = "시도할 횟수는 몇 회인가요?";
+
     private static final String RESULT_MESSAGE = "실행 결과";
-    
+    private static final String WINNER_MESSAGE = "최종 우승자 : ";
+
     private static final String NAME_SEPARATOR = " : ";
+    private static final String WINNER_SEPARATOR = ", ";
+
     private static final String POSITION_MARKER = "-";
 
     public void requestInputCarNames() {
@@ -26,6 +30,12 @@ public class OutputView {
     public void showAllCarsResult(List<CarDto> carDtos) {
         carDtos.forEach(this::showCarResult);
         System.out.println();
+    }
+
+    public void showWinners(List<String> winners) {
+        System.out.print(WINNER_MESSAGE);
+        String joinedWinners = String.join(WINNER_SEPARATOR, winners);
+        System.out.println(joinedWinners);
     }
 
     private void showCarResult(CarDto carDto) {

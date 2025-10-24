@@ -2,6 +2,7 @@ package racingcar;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Names;
 import racingcar.domain.TryCount;
@@ -34,5 +35,12 @@ public class RacingCarGame {
 
             outputView.showAllCarsResult(carDtos);
         }
+
+        List<Car> winners = cars.findWinners();
+        List<String> winnerNames = winners.stream()
+                .map(Car::getName)
+                .toList();
+
+        outputView.showWinners(winnerNames);
     }
 }
