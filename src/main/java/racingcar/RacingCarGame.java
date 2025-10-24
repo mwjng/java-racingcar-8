@@ -1,5 +1,7 @@
 package racingcar;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import racingcar.domain.Cars;
 import racingcar.domain.Names;
 import racingcar.domain.TryCount;
 import racingcar.view.InputView;
@@ -17,5 +19,10 @@ public class RacingCarGame {
         outputView.requestInputTryCount();
         String inputTryCount = inputView.read();
         TryCount tryCount = TryCount.from(inputTryCount);
+
+        Cars cars = Cars.from(names);
+        while (tryCount.tryNext()) {
+            cars.moveAll(Randoms::pickNumberInRange);
+        }
     }
 }
