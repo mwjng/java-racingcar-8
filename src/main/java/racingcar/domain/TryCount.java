@@ -7,7 +7,6 @@ public class TryCount {
     private static final int MINIMUM_TRY_COUNT = 1;
 
     private final int tryCount;
-    private int currentTryCount = 0;
 
     private TryCount(int tryCount) {
         validateRange(tryCount);
@@ -25,14 +24,6 @@ public class TryCount {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(COUNT_FORMAT_ERROR_MESSAGE, e);
         }
-    }
-
-    public boolean tryNext() {
-        if (currentTryCount < tryCount) {
-            currentTryCount++;
-            return true;
-        }
-        return false;
     }
 
     public int getTryCount() {

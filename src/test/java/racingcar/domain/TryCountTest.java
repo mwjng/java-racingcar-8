@@ -3,7 +3,6 @@ package racingcar.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -45,31 +44,5 @@ class TryCountTest {
         assertThatThrownBy(() -> TryCount.from(inputTryCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("시도 횟수는 숫자를 입력해야 합니다.");
-    }
-
-    @Test
-    void 시도가능횟수를_초과하지_않으면_true를_반환한다() {
-        // given
-        TryCount tryCount = TryCount.of(3);
-
-        // when & then
-        assertThat(tryCount.tryNext()).isTrue();
-        assertThat(tryCount.tryNext()).isTrue();
-        assertThat(tryCount.tryNext()).isTrue();
-    }
-
-    @Test
-    void 시도가능횟수를_초과하면_false를_반환한다() {
-        // given
-        TryCount tryCount = TryCount.of(3);
-        tryCount.tryNext();
-        tryCount.tryNext();
-        tryCount.tryNext();
-
-        // when
-        boolean result = tryCount.tryNext();
-
-        // then
-        assertThat(result).isFalse();
     }
 }

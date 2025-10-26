@@ -5,6 +5,7 @@ import java.util.List;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.domain.Names;
+import racingcar.domain.RaceRound;
 import racingcar.domain.TryCount;
 import racingcar.dto.CarDto;
 import racingcar.view.InputView;
@@ -39,9 +40,10 @@ public class RacingCarGame {
     }
 
     private void race(TryCount tryCount, Cars cars) {
+        RaceRound raceRound = RaceRound.of(tryCount);
         outputView.showResultMessage();
 
-        while (tryCount.tryNext()) {
+        while (raceRound.tryNext()) {
             cars.moveAll(Randoms::pickNumberInRange);
             showAllCarsResult(cars);
         }
